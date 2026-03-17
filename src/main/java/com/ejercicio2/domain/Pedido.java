@@ -12,6 +12,16 @@ public class Pedido {
 
     private final List<Producto> productos = new ArrayList<>();
 
+    public void mostrarProductos() {
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos en este pedido.");
+        } else {
+            for (Producto producto : productos) {
+                System.out.println(producto);
+            }
+        }
+    }
+
     public void agregarProducto(Scanner teclado) throws PrecioInvalidoException {
         System.out.print("Ingrese el nombre del producto: ");
         String nombre = teclado.nextLine();
