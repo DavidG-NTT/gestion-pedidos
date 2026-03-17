@@ -1,18 +1,27 @@
 package com.ejercicio2.domain;
 
 import com.ejercicio2.application.MetodoPago;
+import com.ejercicio2.shared.exceptions.PrecioInvalidoException;
 import com.ejercicio2.shared.exceptions.TotalInvalidoException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Pedido {
 
     private final List<Producto> productos = new ArrayList<>();
 
-    public void agregarProducto(Producto producto) {
+    public void agregarProducto(Scanner teclado) throws PrecioInvalidoException {
+        System.out.print("Ingrese el nombre del producto: ");
+        String nombre = teclado.nextLine();
+        System.out.print("Ingrese el precio del producto: ");
+        double precio = teclado.nextDouble();
+        teclado.nextLine();
+
+        Producto producto = new Producto(nombre, precio);
         productos.add(producto);
-        System.out.println(producto.toString());
+        System.out.println("Producto agregado: " + producto);
     }
 
     public double totalPedido() throws TotalInvalidoException {
@@ -24,6 +33,8 @@ public class Pedido {
         if (total <= 0) {
             throw new TotalInvalidoException("El total del pedido no puede ser menor o igual a cero.");
         }
+
+        System.out.println("Total del pedido: " + total);
 
         return total;
     }
