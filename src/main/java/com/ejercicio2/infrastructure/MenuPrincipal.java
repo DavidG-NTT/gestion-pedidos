@@ -6,26 +6,24 @@ import com.ejercicio2.shared.exceptions.TotalInvalidoException;
 
 import java.util.Scanner;
 
-import static com.ejercicio2.infrastructure.MenuPago.menuPago;
+import static com.ejercicio2.infrastructure.MenuPago.ejecutarMenuPago;
+import static com.ejercicio2.infrastructure.MenuPago.mostrarMenuPago;
 
 public class MenuPrincipal {
 
-    public static void mostrarMenu(Scanner teclado, Pedido pedido, int opcion) {
 
-        while (opcion != 5) {
+    public static void ejecutarMenuPrincipal(Scanner teclado, Pedido pedido) {
 
-            System.out.println("\nMENU");
-            System.out.println("1. Mostrar productos");
-            System.out.println("2. Agregar un nuevo producto al pedido");
-            System.out.println("3. Precio total del pedido");
-            System.out.println("4. Realizar pago");
-            System.out.println("5. Salir");
+        int opcion = 0;
+        while (opcion != 9) {
 
-            System.out.print("Seleccione una opción: ");
-            opcion = teclado.nextInt();
-            teclado.nextLine();
+            Main main = new Main();
+            main.mostrarMenuPrincipal();
 
             try {
+                System.out.print("Seleccione una opción: ");
+                opcion = Integer.parseInt(teclado.nextLine());
+
                 switch (opcion) {
                     case 1:
                         pedido.mostrarProductos();
@@ -34,12 +32,25 @@ public class MenuPrincipal {
                         pedido.agregarProducto(teclado);
                         break;
                     case 3:
-                        pedido.totalPedido();
+                        pedido.actualizarProducto(teclado);
                         break;
                     case 4:
-                        menuPago(teclado, pedido);
+                        pedido.eliminarProducto(teclado);
                         break;
                     case 5:
+                        pedido.buscarProducto(teclado);
+                        break;
+                    case 6:
+                        pedido.totalPedido();
+                        break;
+                    case 7:
+                        mostrarMenuPago();
+                        ejecutarMenuPago(teclado, pedido);
+                        break;
+                    case 8:
+                        pedido.vaciarPedido();
+                        break;
+                    case 9:
                         System.out.println("Saliendo...");
                         break;
                     default:

@@ -17,10 +17,17 @@ public class Producto {
     private static int contadorId = 1;
 
     public Producto(String nombre, double precio) throws PrecioInvalidoException {
-        this.id = contadorId++;
-        this.nombre = nombre;
         comprobarPrecio(precio);
         this.precio = precio;
+        this.id = contadorId++;
+        this.nombre = nombre;
+    }
+
+    public Producto (int id, String nombre, double precio) throws PrecioInvalidoException {
+        comprobarPrecio(precio);
+        this.precio = precio;
+        this.id = id;
+        this.nombre = nombre;
     }
 
     // Método para comprobar que el precio no es negativo. Si lo es, se lanza una excepción PrecioInvalidoException.

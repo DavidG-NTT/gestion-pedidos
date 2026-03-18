@@ -10,16 +10,17 @@ import java.util.Scanner;
 
 public class MenuPago {
 
-    public static void menuPago(Scanner teclado, Pedido pedido) throws TotalInvalidoException {
-
+    public static void mostrarMenuPago() {
         System.out.println("\nPara realizar el pedido, seleccione uno de los siguientes metodos de pago.");
         System.out.println("1. Paypal");
         System.out.println("2. Tarjeta");
         System.out.println("3. Transferencia");
         System.out.println("4. Salir");
+    }
 
-        int metodoPagoElegido = teclado.nextInt();
-        teclado.nextLine();
+    public static void ejecutarMenuPago(Scanner teclado, Pedido pedido) throws TotalInvalidoException {
+
+        int metodoPagoElegido = Integer.parseInt(teclado.nextLine());
 
         switch (metodoPagoElegido) {
             case 1:
